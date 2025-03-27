@@ -30,6 +30,13 @@
             height: 100vh;
             margin: 0;
             color: white;
+            overflow: hidden; /* Evitar desbordamiento de animaciones */
+        }
+        .calculator-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .calculator {
             position: relative; /* Para posicionar el LED */
@@ -38,10 +45,7 @@
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
-            width: 90%; /* Ancho responsive */
-            max-width: 400px; /* Máximo ancho para pantallas grandes */
-            min-width: 300px; /* Mínimo ancho para pantallas pequeñas */
-            box-sizing: border-box;
+            width: 360px;
         }
         .led {
             position: absolute;
@@ -58,22 +62,6 @@
             background: green; /* Color verde cuando está encendido */
             box-shadow: 0px 0px 5px rgba(0, 255, 0, 0.7); /* Brillo del LED */
         }
-        .branding-container {
-            background: #ccc; /* Color gris claro para la placa */
-            padding: 5px 10px;
-            border-radius: 5px;
-            text-align: center;
-            margin: 0 auto 10px; /* Centrado horizontal y margen inferior */
-            display: inline-block; /* Ajuste automático al tamaño del texto */
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Sombra para dar efecto de relieve */
-        }
-        .branding {
-            font-family: 'Press Start 2P', cursive; /* Fuente estilo retro */
-            font-size: calc(10px + 0.5vw); /* Tamaño de fuente ajustable */
-            color: #333; /* Color oscuro para el texto */
-            text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2); /* Ligero efecto de sombra */
-            margin: 0; /* Sin margen adicional dentro del contenedor */
-        }
         .display {
             width: calc(100% - 40px);
             height: 60px;
@@ -81,7 +69,7 @@
             color: #fff;
             text-align: right;
             padding: 10px;
-            font-size: calc(24px + 0.5vw); /* Tamaño de fuente ajustable */
+            font-size: 28px;
             font-family: 'Digital-7', cursive; /* Fuente estilo calculadora digital */
             border: none;
             border-radius: 10px;
@@ -101,8 +89,8 @@
             background: #bdc3c7;
             border: none;
             color: #2c3e50;
-            padding: calc(15px + 0.5vw); /* Padding ajustable */
-            font-size: calc(14px + 0.5vw); /* Tamaño de fuente ajustable */
+            padding: 20px;
+            font-size: 18px;
             font-family: 'Press Start 2P', cursive; /* Fuente estilo retro */
             cursor: pointer;
             border-radius: 10px;
@@ -135,73 +123,113 @@
         .button.function:hover {
             background: #2980b9;
         }
-        @media (max-width: 600px) {
-            .calculator {
-                padding: 10px;
+        .plaque {
+            margin-top: 10px;
+            background: #333; /* Fondo oscuro para la placa */
+            color: #f3f3f3; /* Color claro para el texto */
+            font-family: 'Pacifico', cursive; /* Fuente original y elegante */
+            font-size: 14px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+            white-space: nowrap; /* Ajustar el tamaño de la placa al texto */
+        }
+
+        /* Animaciones de círculos */
+        .circle-animation-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none; /* No interferir con las interacciones */
+            overflow: hidden;
+        }
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            animation: expand-and-fade 2s ease-out forwards;
+        }
+        @keyframes expand-and-fade {
+            0% {
+                transform: scale(0);
+                opacity: 1;
             }
-            .button {
-                padding: calc(10px + 0.5vw);
-                font-size: calc(12px + 0.5vw);
-            }
-            .display {
-                font-size: calc(20px + 0.5vw);
+            100% {
+                transform: scale(2);
+                opacity: 0;
             }
         }
     </style>
 </head>
 <body>
-    <div class="calculator">
-        <!-- Placa con el nombre -->
-        <div class="branding-container">
-            <div class="branding">Jimena Novegil Pastoriza</div>
+    <div class="calculator-container">
+        <div class="calculator">
+            <!-- LED indicador -->
+            <div class="led" id="led"></div>
+            <input type="text" class="display" id="display" disabled>
+            <div class="buttons">
+                <!-- Fila 1: Botones de control -->
+                <button class="button operator" onclick="handleButtonClick('togglePower')">On/Off</button>
+                <button class="button operator" onclick="handleButtonClick('clearDisplay')">C</button>
+                <button class="button operator" onclick="handleButtonClick('deleteLast')">←</button>
+                <button class="button operator" onclick="handleButtonClick('appendOperator', '^')">^</button>
+
+                <!-- Fila 2: Números y operador -->
+                <button class="button" onclick="handleButtonClick('appendNumber', '7')">7</button>
+                <button class="button" onclick="handleButtonClick('appendNumber', '8')">8</button>
+                <button class="button" onclick="handleButtonClick('appendNumber', '9')">9</button>
+                <button class="button operator" onclick="handleButtonClick('appendOperator', '/')">÷</button>
+
+                <!-- Fila 3: Números y operador -->
+                <button class="button" onclick="handleButtonClick('appendNumber', '4')">4</button>
+                <button class="button" onclick="handleButtonClick('appendNumber', '5')">5</button>
+                <button class="button" onclick="handleButtonClick('appendNumber', '6')">6</button>
+                <button class="button operator" onclick="handleButtonClick('appendOperator', '*')">x</button>
+
+                <!-- Fila 4: Números y operador -->
+                <button class="button" onclick="handleButtonClick('appendNumber', '1')">1</button>
+                <button class="button" onclick="handleButtonClick('appendNumber', '2')">2</button>
+                <button class="button" onclick="handleButtonClick('appendNumber', '3')">3</button>
+                <button class="button operator" onclick="handleButtonClick('appendOperator', '-')">-</button>
+
+                <!-- Fila 5: Números y operadores -->
+                <button class="button" onclick="handleButtonClick('appendNumber', '0')" style="grid-column: span 2;">0</button>
+                <button class="button" onclick="handleButtonClick('appendNumber', '.')">.</button>
+                <button class="button operator" onclick="handleButtonClick('appendOperator', '+')">+</button>
+
+                <!-- Fila 6: Funciones azules -->
+                <button class="button function" onclick="handleButtonClick('appendFunction', 'Math.sqrt')">√</button>
+                <button class="button function" onclick="handleButtonClick('appendFunction', 'Math.sin')">sin</button>
+                <button class="button function" onclick="handleButtonClick('appendFunction', 'Math.cos')">cos</button>
+                <button class="button function" onclick="handleButtonClick('appendFunction', 'Math.tan')">tan</button>
+
+                <!-- Fila 7: Funciones azules -->
+                <button class="button function" onclick="handleButtonClick('appendFunction', 'Math.log')">log</button>
+                <button class="button function" onclick="handleButtonClick('appendFunction', 'Math.PI')">π</button>
+                <button class="button equal" onclick="handleButtonClick('calculateResult')">=</button>
+            </div>
         </div>
-        <!-- LED indicador -->
-        <div class="led" id="led"></div>
-        <input type="text" class="display" id="display" disabled>
-        <div class="buttons">
-            <!-- Fila 1: Botones de control -->
-            <button class="button operator" onclick="handleButtonClick('togglePower')">On/Off</button>
-            <button class="button operator" onclick="handleButtonClick('clearDisplay')">C</button>
-            <button class="button operator" onclick="handleButtonClick('deleteLast')">←</button>
-            <button class="button operator" onclick="handleButtonClick('appendOperator', '^')">^</button>
-            <!-- Fila 2: Números y operador -->
-            <button class="button" onclick="handleButtonClick('appendNumber', '7')">7</button>
-            <button class="button" onclick="handleButtonClick('appendNumber', '8')">8</button>
-            <button class="button" onclick="handleButtonClick('appendNumber', '9')">9</button>
-            <button class="button operator" onclick="handleButtonClick('appendOperator', '/')">÷</button>
-            <!-- Fila 3: Números y operador -->
-            <button class="button" onclick="handleButtonClick('appendNumber', '4')">4</button>
-            <button class="button" onclick="handleButtonClick('appendNumber', '5')">5</button>
-            <button class="button" onclick="handleButtonClick('appendNumber', '6')">6</button>
-            <button class="button operator" onclick="handleButtonClick('appendOperator', '*')">x</button>
-            <!-- Fila 4: Números y operador -->
-            <button class="button" onclick="handleButtonClick('appendNumber', '1')">1</button>
-            <button class="button" onclick="handleButtonClick('appendNumber', '2')">2</button>
-            <button class="button" onclick="handleButtonClick('appendNumber', '3')">3</button>
-            <button class="button operator" onclick="handleButtonClick('appendOperator', '-')">-</button>
-            <!-- Fila 5: Números y operadores -->
-            <button class="button" onclick="handleButtonClick('appendNumber', '0')" style="grid-column: span 2;">0</button>
-            <button class="button" onclick="handleButtonClick('appendNumber', '.')">.</button>
-            <button class="button operator" onclick="handleButtonClick('appendOperator', '+')">+</button>
-            <!-- Fila 6: Funciones azules -->
-            <button class="button function" onclick="handleButtonClick('appendFunction', 'Math.sqrt')">√</button>
-            <button class="button function" onclick="handleButtonClick('appendFunction', 'Math.sin')">sin</button>
-            <button class="button function" onclick="handleButtonClick('appendFunction', 'Math.cos')">cos</button>
-            <button class="button function" onclick="handleButtonClick('appendFunction', 'Math.tan')">tan</button>
-            <!-- Fila 7: Funciones azules -->
-            <button class="button function" onclick="handleButtonClick('appendFunction', 'Math.log')">log</button>
-            <button class="button function" onclick="handleButtonClick('appendFunction', 'Math.PI')">π</button>
-            <button class="button equal" onclick="handleButtonClick('calculateResult')">=</button>
-        </div>
+        <!-- Placa con el nombre debajo de la calculadora -->
+        <div class="plaque">Jimena Novegil Pastoriza</div>
     </div>
+
+    <!-- Contenedor para las animaciones -->
+    <div class="circle-animation-container" id="circleAnimationContainer"></div>
+
     <!-- Importar fuentes desde Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/digital-7" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
     <script>
         const display = document.getElementById('display');
         const led = document.getElementById('led');
+        const circleAnimationContainer = document.getElementById('circleAnimationContainer');
         let isPoweredOn = false;
         let isFunctionActive = false;
+
         // Función genérica para manejar clics en los botones
         function handleButtonClick(action, value) {
             if (display.value === 'Hello :)' || display.value === 'Error :(') {
@@ -231,6 +259,7 @@
                     break;
             }
         }
+
         function togglePower() {
             isPoweredOn = !isPoweredOn;
             if (isPoweredOn) {
@@ -248,6 +277,7 @@
                 display.value = '';
             }
         }
+
         function appendNumber(number) {
             if (isPoweredOn) {
                 if (isFunctionActive) {
@@ -261,6 +291,7 @@
                 }
             }
         }
+
         function appendOperator(operator) {
             if (isPoweredOn) {
                 if (isFunctionActive) {
@@ -269,30 +300,36 @@
                 display.value += operator;
             }
         }
+
         function appendFunction(func) {
             if (isPoweredOn) {
                 // Insertar la función con paréntesis y dejar el cursor entre ellos
                 const start = func + '(';
                 const end = ')';
                 display.value += start + end;
+
                 // Activar el modo función
                 isFunctionActive = true;
+
                 // Colocar el cursor automáticamente entre los paréntesis
                 const position = display.value.length - 1;
                 display.setSelectionRange(position, position);
             }
         }
+
         function clearDisplay() {
             if (isPoweredOn) {
                 display.value = '';
                 isFunctionActive = false; // Resetear el modo función
             }
         }
+
         function deleteLast() {
             if (isPoweredOn) {
                 display.value = display.value.slice(0, -1);
             }
         }
+
         function calculateResult() {
             if (isPoweredOn) {
                 try {
@@ -303,6 +340,7 @@
                     for (let i = 0; i < openParentheses - closeParentheses; i++) {
                         expression += ')';
                     }
+
                     let result = eval(expression.replace('^', '**'));
                     if (!isFinite(result)) {
                         throw new Error();
@@ -312,6 +350,40 @@
                     // Mostrar mensaje temporal de error
                     display.value = 'Error :(';
                 }
+
+                // Animación de círculos
+                createCircleAnimations();
+            }
+        }
+
+        function createCircleAnimations() {
+            const colors = ['#FF5733', '#33FF57', '#3357FF', '#F3FF33', '#FF33F3']; // Colores de los círculos
+            const calculatorRect = document.querySelector('.calculator').getBoundingClientRect();
+
+            // Crear círculos a ambos lados de la calculadora
+            for (let i = 0; i < 20; i++) {
+                const circle = document.createElement('div');
+                circle.classList.add('circle');
+
+                // Propiedades aleatorias
+                const size = Math.random() * 50 + 10; // Tamaño entre 10px y 60px
+                const side = Math.random() < 0.5 ? 'left' : 'right'; // Lado izquierdo o derecho
+                const x = side === 'left' ? -size : calculatorRect.right; // Posición horizontal
+                const y = Math.random() * window.innerHeight; // Posición vertical
+
+                circle.style.width = `${size}px`;
+                circle.style.height = `${size}px`;
+                circle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                circle.style.left = `${x}px`;
+                circle.style.top = `${y}px`;
+
+                // Agregar al contenedor de animaciones
+                circleAnimationContainer.appendChild(circle);
+
+                // Eliminar el círculo después de la animación
+                setTimeout(() => {
+                    circle.remove();
+                }, 2000);
             }
         }
     </script>
