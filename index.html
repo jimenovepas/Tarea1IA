@@ -1,400 +1,349 @@
-
-                        <!DOCTYPE html>
-                        <html lang="en">
-                        <head>
-                            <meta charset="UTF-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-							<style>
-								body {
-									background-color: white; /* Ensure the iframe has a white background */
-								}
-
-								
-							</style>
-                        </head>
-                        <body>
-                            <!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Científica Realista</title>
+    <title>Bob Marley: An Icon of Reggae Music</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background: url('https://i.postimg.cc/66CgbLb3/nueva-disposicion-escritorio-mejorada.png') no-repeat center center fixed; /* Fondo de escritorio mejorado */
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            color: white;
-            overflow: hidden; /* Evitar desbordamiento de animaciones */
-        }
-        .calculator-container {
+            padding: 0;
+            background-color: #1e272e;
+            color: #ecf0f1;
+            line-height: 1.6;
+            overflow-x: hidden;
             position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
-        .calculator {
-            position: relative; /* Para posicionar el LED */
-            background: url('https://i.postimg.cc/4dfs4LSW/nuevabase-cal.jpg') no-repeat center center; /* Textura de la calculadora */
-            background-size: cover;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
-            width: 360px;
+        .cover-title {
+            font-family: 'Impact', sans-serif; /* Changed to Impact font */
+            font-size: 8rem; /* Increased font size */
+            color: #ecf0f1;
+            margin: 40px 0 20px;
+            text-align: center;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
-        .led {
+        .cover-container {
+            position: relative;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .cover-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 2px solid #fff; /* Added white border around images */
+        }
+        .hidden {
+            display: none;
+        }
+        .toggle-button {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: red; /* Color rojo por defecto (apagado) */
-            box-shadow: 0px 0px 5px rgba(255, 0, 0, 0.7); /* Brillo del LED */
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
-        .led.on {
-            background: green; /* Color verde cuando está encendido */
-            box-shadow: 0px 0px 5px rgba(0, 255, 0, 0.7); /* Brillo del LED */
-        }
-        .display {
-            width: calc(100% - 40px);
-            height: 60px;
-            background: #111; /* Color más oscuro cuando está apagada */
+            top: 20px;
+            right: 20px;
+            background-color: #34495e;
             color: #fff;
-            text-align: right;
-            padding: 10px;
-            font-size: 28px;
-            font-family: 'Digital-7', cursive; /* Fuente estilo calculadora digital */
             border: none;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .display.on {
-            background: #fff; /* Color claro cuando está encendida */
-            color: #2c3e50;
-        }
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-        .button {
-            background: #bdc3c7;
-            border: none;
-            color: #2c3e50;
-            padding: 20px;
-            font-size: 18px;
-            font-family: 'Press Start 2P', cursive; /* Fuente estilo retro */
+            padding: 15px 25px;
+            border-radius: 5px;
             cursor: pointer;
-            border-radius: 10px;
-            transition: background-color 0.2s, transform 0.2s;
-            text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+            font-size: 1.1rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
-        .button:hover {
-            background: #95a5a6;
+        .toggle-button:hover {
+            background-color: #2c3e50;
             transform: scale(1.05);
         }
-        .button.operator {
-            background: #e74c3c;
-            color: white;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
-        .button.operator:hover {
-            background: #c0392b;
+        .introduction {
+            background: #2c3e50;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            margin: 20px 0;
         }
-        .button.equal {
-            background: #2ecc71;
-            color: white;
-            grid-column: span 2;
+        .introduction h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #ecf0f1;
         }
-        .button.equal:hover {
-            background: #27ae60;
+        .introduction p {
+            font-size: 1rem;
+            color: #bdc3c7;
         }
-        .button.function {
-            background: #3498db;
-            color: white;
+        .audio-player {
+            margin: 30px 0;
+            text-align: center;
         }
-        .button.function:hover {
-            background: #2980b9;
-        }
-        .plaque {
-            margin-top: 10px;
-            background: #333; /* Fondo oscuro para la placa */
-            color: #f3f3f3; /* Color claro para el texto */
-            font-family: 'Pacifico', cursive; /* Fuente original y elegante */
-            font-size: 14px;
-            padding: 5px 10px;
+        audio {
+            width: 100%;
+            max-width: 600px;
+            margin: 15px auto;
+            display: block;
             border-radius: 5px;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
-            white-space: nowrap; /* Ajustar el tamaño de la placa al texto */
+            overflow: hidden;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
         }
-
-        /* Animaciones de círculos */
-        .circle-animation-container {
-            position: absolute;
+        audio.playing {
+            box-shadow: 0 0 20px 5px #0074D9;
+            border: 2px solid #0074D9;
+        }
+        .songs-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+        .song-item {
+            background: #2c3e50;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border: 2px solid #ecf0f1; /* White border around buttons */
+        }
+        .song-item:hover {
+            transform: scale(1.05);
+        }
+        .song-item h3 {
+            font-family: 'Brush Script MT', cursive; /* Brush Script MT font */
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #ecf0f1;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #1e272e;
+            color: #bdc3c7;
+            margin-top: 30px;
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        .dynamic-audio-player {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .dynamic-image {
+            margin-top: 20px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 2px solid #fff; /* Added white border around images */
+        }
+        /* Persistent music animation styles */
+        .music-animation {
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none; /* No interferir con las interacciones */
-            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee, #f6d365);
+            background-size: 300% 300%;
+            animation: gradientAnimation 5s ease infinite;
+            z-index: -1;
+            opacity: 1; /* Always visible */
         }
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0;
-            animation: expand-and-fade 2s ease-out forwards;
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        @keyframes expand-and-fade {
-            0% {
-                transform: scale(0);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(2);
-                opacity: 0;
-            }
+        /* Styles for "Songs by Bob Marley" */
+        .songs-header {
+            font-size: 2.5rem; /* Larger font size */
+            color: #2c3e50; /* Dark color */
+            text-align: center;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="calculator-container">
-        <div class="calculator">
-            <!-- LED indicador -->
-            <div class="led" id="led"></div>
-            <input type="text" class="display" id="display" disabled>
-            <div class="buttons">
-                <!-- Fila 1: Botones de control -->
-                <button class="button operator" onclick="handleButtonClick('togglePower')">On/Off</button>
-                <button class="button operator" onclick="handleButtonClick('clearDisplay')">C</button>
-                <button class="button operator" onclick="handleButtonClick('deleteLast')">←</button>
-                <button class="button operator" onclick="handleButtonClick('appendOperator', '^')">^</button>
-
-                <!-- Fila 2: Números y operador -->
-                <button class="button" onclick="handleButtonClick('appendNumber', '7')">7</button>
-                <button class="button" onclick="handleButtonClick('appendNumber', '8')">8</button>
-                <button class="button" onclick="handleButtonClick('appendNumber', '9')">9</button>
-                <button class="button operator" onclick="handleButtonClick('appendOperator', '/')">÷</button>
-
-                <!-- Fila 3: Números y operador -->
-                <button class="button" onclick="handleButtonClick('appendNumber', '4')">4</button>
-                <button class="button" onclick="handleButtonClick('appendNumber', '5')">5</button>
-                <button class="button" onclick="handleButtonClick('appendNumber', '6')">6</button>
-                <button class="button operator" onclick="handleButtonClick('appendOperator', '*')">x</button>
-
-                <!-- Fila 4: Números y operador -->
-                <button class="button" onclick="handleButtonClick('appendNumber', '1')">1</button>
-                <button class="button" onclick="handleButtonClick('appendNumber', '2')">2</button>
-                <button class="button" onclick="handleButtonClick('appendNumber', '3')">3</button>
-                <button class="button operator" onclick="handleButtonClick('appendOperator', '-')">-</button>
-
-                <!-- Fila 5: Números y operadores -->
-                <button class="button" onclick="handleButtonClick('appendNumber', '0')" style="grid-column: span 2;">0</button>
-                <button class="button" onclick="handleButtonClick('appendNumber', '.')">.</button>
-                <button class="button operator" onclick="handleButtonClick('appendOperator', '+')">+</button>
-
-                <!-- Fila 6: Funciones azules -->
-                <button class="button function" onclick="handleButtonClick('appendFunction', 'Math.sqrt')">√</button>
-                <button class="button function" onclick="handleButtonClick('appendFunction', 'Math.sin')">sin</button>
-                <button class="button function" onclick="handleButtonClick('appendFunction', 'Math.cos')">cos</button>
-                <button class="button function" onclick="handleButtonClick('appendFunction', 'Math.tan')">tan</button>
-
-                <!-- Fila 7: Funciones azules -->
-                <button class="button function" onclick="handleButtonClick('appendFunction', 'Math.log')">log</button>
-                <button class="button function" onclick="handleButtonClick('appendFunction', 'Math.PI')">π</button>
-                <button class="button equal" onclick="handleButtonClick('calculateResult')">=</button>
+    <h1 class="cover-title">Bob Marley</h1>
+    <div class="cover-container">
+        <button class="toggle-button" id="toggleButton">Change Image</button>
+        <img src="https://i.postimg.cc/5NY8wZQZ/enhanced-image-1.png" alt="Cover Image 1" class="cover-image" id="image1">
+        <img src="https://i.postimg.cc/FH0c63Zp/7c274ae7-3563-4d18-b819-db99b94c8ce1-image.png" alt="Cover Image 2" class="cover-image hidden" id="image2">
+        <img src="https://i.postimg.cc/9FKtKWjm/enhanced-image.png" alt="Cover Image 3" class="cover-image hidden" id="image3">
+    </div>
+    <div class="container">
+        <div class="introduction">
+            <h2>About Bob Marley</h2>
+            <p>
+                Bob Marley, an icon of reggae music and a global symbol of unity and resilience, revolutionized the music world with his moving melodies and impactful lyrics. Born in Jamaica in 1945, Marley seamlessly blended the traditional rhythms of reggae with themes of love, justice, and freedom, making his music resonate universally. His songs, such as "One Love," "Redemption Song," and "No Woman, No Cry," remain timeless anthems of hope and cultural pride. Through his unparalleled artistry, Bob Marley continues to inspire generations, transcending borders and connecting people from all over the world.
+            </p>
+            <div class="audio-player">
+                <audio controls id="intro-audio">
+                    <source src="https://ia800501.us.archive.org/2/items/eleven-labs-2025-04-18-t-09-15-17-jessica-anne-bogart-conversations-pvc-sp-100-s/ElevenLabs_2025-04-18T09_15_17_Jessica%20Anne%20Bogart%20-%20Conversations_pvc_sp100_s42_sb100_se54_b_m2.mp3" type="audio/mpeg">
+                    Your browser does not support the audio player.
+                </audio>
             </div>
         </div>
-        <!-- Placa con el nombre debajo de la calculadora -->
-        <div class="plaque">Jimena Novegil Pastoriza</div>
+        <div class="audio-player">
+            <h2 class="songs-header">Songs by Bob Marley</h2>
+            <div class="songs-list">
+                <div class="song-item" data-src="https://ia800904.us.archive.org/32/items/BobMarleyTheWailersRecordPlant1973/10.Lively%20Up%20Yourself.mp3" data-image="https://i.postimg.cc/nr22f9Bj/enhanced-image-2.png">
+                    <h3>Lively Up Yourself</h3>
+                </div>
+                <div class="song-item" data-src="https://ia800904.us.archive.org/32/items/BobMarleyTheWailersRecordPlant1973/09.Get%20Up%20Stand%20Up.mp3" data-image="https://i.postimg.cc/rmdZ7RXF/enhanced-image-3.png">
+                    <h3>Get Up Stand Up</h3>
+                </div>
+                <div class="song-item" data-src="https://ia800904.us.archive.org/32/items/BobMarleyTheWailersRecordPlant1973/08.Kinky%20Reggae.mp3" data-image="https://i.postimg.cc/gjFs5MHN/enhanced-image-4.png">
+                    <h3>Kinky Reggae</h3>
+                </div>
+                <div class="song-item" data-src="https://ia800904.us.archive.org/32/items/BobMarleyTheWailersRecordPlant1973/11.Walk%20The%20Proud%20Land.mp3" data-image="https://i.postimg.cc/TYQjq2Fk/enhanced-image-5.png">
+                    <h3>Walk The Proud Land</h3>
+                </div>
+                <div class="song-item" data-src="https://ia800904.us.archive.org/32/items/BobMarleyTheWailersRecordPlant1973/07.Burnin%27%20%26%20Lootin%27.mp3" data-image="https://i.postimg.cc/bYmdmGY2/image.png">
+                    <h3>Burnin' & Lootin'</h3>
+                </div>
+                <div class="song-item" data-src="https://ia800904.us.archive.org/32/items/BobMarleyTheWailersRecordPlant1973/06.Stop%20That%20Train.mp3" data-image="https://i.postimg.cc/k57mrcfM/enhanced-image-6.png">
+                    <h3>Stop That Train</h3>
+                </div>
+                <div class="song-item" data-src="https://ia800904.us.archive.org/32/items/BobMarleyTheWailersRecordPlant1973/05.You%20Can%27t%20Blame%20The%20Youth.mp3" data-image="https://i.postimg.cc/4xgddpBq/enhanced-image-7.png">
+                    <h3>You Can't Blame The Youth</h3>
+                </div>
+                <div class="song-item" data-src="https://ia800904.us.archive.org/32/items/BobMarleyTheWailersRecordPlant1973/04.Slave%20Driver.mp3" data-image="https://i.postimg.cc/2j79MDgW/enhanced-maxresdefault1.png">
+                    <h3>Slave Driver</h3>
+                </div>
+                <div class="song-item" data-src="https://ia800904.us.archive.org/32/items/BobMarleyTheWailersRecordPlant1973/03.Bend%20Down%20Low.mp3" data-image="https://i.postimg.cc/fLLksZBb/enhanced-image-8.png">
+                    <h3>Bend Down Low</h3>
+                </div>
+                <div class="song-item" data-src="https://ia800904.us.archive.org/32/items/BobMarleyTheWailersRecordPlant1973/02.Rastaman%20Chant.mp3" data-image="https://i.postimg.cc/WbMZXNKR/enhanced-image-9.png">
+                    <h3>Rastaman Chant</h3>
+                </div>
+            </div>
+        </div>
+        <div class="dynamic-audio-player" id="dynamicAudioPlayer">
+            <!-- Dynamic audio player will appear here -->
+        </div>
+        <div class="dynamic-image-container" id="dynamicImageContainer">
+            <!-- Dynamic image will appear here -->
+        </div>
     </div>
-
-    <!-- Contenedor para las animaciones -->
-    <div class="circle-animation-container" id="circleAnimationContainer"></div>
-
-    <!-- Importar fuentes desde Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/digital-7" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-
+    <footer>
+        <p>&copy; 2023 Bob Marley Tribute. All rights reserved.</p>
+    </footer>
+    <!-- Persistent music animation overlay -->
+    <div class="music-animation"></div>
     <script>
-        const display = document.getElementById('display');
-        const led = document.getElementById('led');
-        const circleAnimationContainer = document.getElementById('circleAnimationContainer');
-        let isPoweredOn = false;
-        let isFunctionActive = false;
+        // Toggle images functionality
+        const button = document.getElementById('toggleButton');
+        const image1 = document.getElementById('image1');
+        const image2 = document.getElementById('image2');
+        const image3 = document.getElementById('image3');
+        let currentImageIndex = 1;
+        button.addEventListener('click', () => {
+            if (currentImageIndex === 1) {
+                image1.classList.add('hidden');
+                image2.classList.remove('hidden');
+                currentImageIndex = 2;
+            } else if (currentImageIndex === 2) {
+                image2.classList.add('hidden');
+                image3.classList.remove('hidden');
+                currentImageIndex = 3;
+            } else if (currentImageIndex === 3) {
+                image3.classList.add('hidden');
+                image1.classList.remove('hidden');
+                currentImageIndex = 1;
+            }
+        });
 
-        // Función genérica para manejar clics en los botones
-        function handleButtonClick(action, value) {
-            if (display.value === 'Hello :)' || display.value === 'Error :(') {
-                display.value = ''; // Limpiar el mensaje al presionar cualquier botón
+        // Dynamic audio player and image functionality
+        const songItems = document.querySelectorAll('.song-item');
+        const dynamicAudioPlayer = document.getElementById('dynamicAudioPlayer');
+        const dynamicImageContainer = document.getElementById('dynamicImageContainer');
+        const introAudio = document.getElementById('intro-audio');
+        let currentAudio = null;
+
+        function createAudioPlayer(src) {
+            // Clear previous audio player if any
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.remove();
             }
-            switch (action) {
-                case 'togglePower':
-                    togglePower();
-                    break;
-                case 'clearDisplay':
-                    clearDisplay();
-                    break;
-                case 'deleteLast':
-                    deleteLast();
-                    break;
-                case 'appendNumber':
-                    appendNumber(value);
-                    break;
-                case 'appendOperator':
-                    appendOperator(value);
-                    break;
-                case 'appendFunction':
-                    appendFunction(value);
-                    break;
-                case 'calculateResult':
-                    calculateResult();
-                    break;
-            }
+
+            // Create new audio element
+            const audio = document.createElement('audio');
+            audio.src = src;
+            audio.controls = true;
+            audio.style.width = '100%';
+            audio.style.maxWidth = '600px';
+            audio.style.margin = '15px auto';
+            audio.style.display = 'block';
+
+            // Add event listeners for play/pause to toggle 'playing' class
+            audio.addEventListener('play', () => {
+                if (currentAudio && currentAudio !== audio) {
+                    currentAudio.pause(); // Pause any other playing audio
+                }
+                if (introAudio && !introAudio.paused) {
+                    introAudio.pause(); // Pause intro audio if playing
+                }
+                audio.classList.add('playing');
+                currentAudio = audio; // Update the currently playing audio
+            });
+
+            audio.addEventListener('pause', () => {
+                audio.classList.remove('playing');
+                if (currentAudio === audio) {
+                    currentAudio = null; // Reset current audio if paused
+                }
+            });
+
+            // Append audio to the dynamic player container
+            dynamicAudioPlayer.innerHTML = ''; // Ensure only one audio plays at a time
+            dynamicAudioPlayer.appendChild(audio);
         }
 
-        function togglePower() {
-            isPoweredOn = !isPoweredOn;
-            if (isPoweredOn) {
-                display.classList.add('on');
-                led.classList.add('on'); // Encender LED (verde)
-                display.value = 'Hello :)';
-                setTimeout(() => {
-                    if (display.value === 'Hello :)') {
-                        display.value = ''; // Limpiar si no se ha pulsado ningún botón
-                    }
-                }, 2000); // El mensaje desaparece automáticamente después de 2 segundos
-            } else {
-                display.classList.remove('on');
-                led.classList.remove('on'); // Apagar LED (rojo)
-                display.value = '';
-            }
+        function createDynamicImage(imageSrc) {
+            // Clear previous image
+            dynamicImageContainer.innerHTML = '';
+            // Create new image element
+            const img = document.createElement('img');
+            img.src = imageSrc;
+            img.alt = 'Dynamic Image';
+            img.classList.add('dynamic-image');
+            // Append image to the dynamic image container
+            dynamicImageContainer.appendChild(img);
         }
 
-        function appendNumber(number) {
-            if (isPoweredOn) {
-                if (isFunctionActive) {
-                    // Insertar el número dentro de los paréntesis si una función está activa
-                    const currentValue = display.value;
-                    const lastOpenParenthesis = currentValue.lastIndexOf('(');
-                    const newValue = currentValue.slice(0, lastOpenParenthesis + 1) + number + currentValue.slice(lastOpenParenthesis + 1);
-                    display.value = newValue;
+        songItems.forEach(songItem => {
+            songItem.addEventListener('click', () => {
+                const src = songItem.getAttribute('data-src');
+                const imageSrc = songItem.getAttribute('data-image');
+                createAudioPlayer(src);
+                if (imageSrc) {
+                    createDynamicImage(imageSrc);
                 } else {
-                    display.value += number;
+                    dynamicImageContainer.innerHTML = ''; // Clear image if no image is provided
                 }
+            });
+        });
+
+        // Ensure intro audio pauses any other audio when played
+        introAudio.addEventListener('play', () => {
+            if (currentAudio && !currentAudio.paused) {
+                currentAudio.pause(); // Pause dynamic audio if playing
             }
-        }
-
-        function appendOperator(operator) {
-            if (isPoweredOn) {
-                if (isFunctionActive) {
-                    isFunctionActive = false; // Desactivar modo función al añadir un operador
-                }
-                display.value += operator;
-            }
-        }
-
-        function appendFunction(func) {
-            if (isPoweredOn) {
-                // Insertar la función con paréntesis y dejar el cursor entre ellos
-                const start = func + '(';
-                const end = ')';
-                display.value += start + end;
-
-                // Activar el modo función
-                isFunctionActive = true;
-
-                // Colocar el cursor automáticamente entre los paréntesis
-                const position = display.value.length - 1;
-                display.setSelectionRange(position, position);
-            }
-        }
-
-        function clearDisplay() {
-            if (isPoweredOn) {
-                display.value = '';
-                isFunctionActive = false; // Resetear el modo función
-            }
-        }
-
-        function deleteLast() {
-            if (isPoweredOn) {
-                display.value = display.value.slice(0, -1);
-            }
-        }
-
-        function calculateResult() {
-            if (isPoweredOn) {
-                try {
-                    // Añadir paréntesis al final si es necesario
-                    let expression = display.value;
-                    const openParentheses = (expression.match(/\(/g) || []).length;
-                    const closeParentheses = (expression.match(/\)/g) || []).length;
-                    for (let i = 0; i < openParentheses - closeParentheses; i++) {
-                        expression += ')';
-                    }
-
-                    let result = eval(expression.replace('^', '**'));
-                    if (!isFinite(result)) {
-                        throw new Error();
-                    }
-                    display.value = result;
-                } catch (error) {
-                    // Mostrar mensaje temporal de error
-                    display.value = 'Error :(';
-                }
-
-                // Animación de círculos
-                createCircleAnimations();
-            }
-        }
-
-        function createCircleAnimations() {
-            const colors = ['#FF5733', '#33FF57', '#3357FF', '#F3FF33', '#FF33F3']; // Colores de los círculos
-            const calculatorRect = document.querySelector('.calculator').getBoundingClientRect();
-
-            // Crear círculos a ambos lados de la calculadora
-            for (let i = 0; i < 20; i++) {
-                const circle = document.createElement('div');
-                circle.classList.add('circle');
-
-                // Propiedades aleatorias
-                const size = Math.random() * 50 + 10; // Tamaño entre 10px y 60px
-                const side = Math.random() < 0.5 ? 'left' : 'right'; // Lado izquierdo o derecho
-                const x = side === 'left' ? -size : calculatorRect.right; // Posición horizontal
-                const y = Math.random() * window.innerHeight; // Posición vertical
-
-                circle.style.width = `${size}px`;
-                circle.style.height = `${size}px`;
-                circle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                circle.style.left = `${x}px`;
-                circle.style.top = `${y}px`;
-
-                // Agregar al contenedor de animaciones
-                circleAnimationContainer.appendChild(circle);
-
-                // Eliminar el círculo después de la animación
-                setTimeout(() => {
-                    circle.remove();
-                }, 2000);
-            }
-        }
+        });
     </script>
 </body>
 </html>
-
-
-
-							<script>
-                            	
-							</script>
-                        </body>
-                        </html>
-                    
